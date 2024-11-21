@@ -1,4 +1,4 @@
-# collectivecog (COOG)
+# Collective Cognition (COOG)
 
 ![alt text](screenshots/sh-01.png)
 
