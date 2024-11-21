@@ -1,5 +1,7 @@
 # collectivecog (COOG)
 
+![alt text](screenshots/sh-01.png)
+
 Welcome to the CooG project!
 
 CooG aims to be a comprehensive AI tool and workspace for everyone. While this
