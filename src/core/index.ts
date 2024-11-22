@@ -140,7 +140,7 @@ export class CoogCoreAction {
     end_date: Date;
     action: Function;
     data: any[];
-    args: any;
+    args?: any;
     on_done?: Function;
     on_start?: (step: CoogCoreAction) => void;
     is_running: boolean;
@@ -204,6 +204,19 @@ export class CoogCoreAction {
      * Executes the action.
      */
     async run() {
-        return await this.action();
+        this.is_running = true;
+        this.on_start?.(this);
+        const result = await this.action();
+        this.on_done?.(this);
+        this.is_running = false;
+
+        const results = [result];
+        for (var i = 0; i < this.next.length; i++) {
+            const step = this.next[i];
+            step.args = step.args ?? result
+            const stepResult = await step.run();
+            results.push(stepResult);
+        }
+        return result;
     }
 }
