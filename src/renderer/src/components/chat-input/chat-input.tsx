@@ -39,11 +39,12 @@ export function ChatInput(
                         trigger="@"
                         data={data}
                         renderSuggestion={(_, __, highlightedDisplay) => (
-                            <div className="user">{highlightedDisplay}</div>
+                            <div className="user text-red-500">
+                                {highlightedDisplay}
+                            </div>
                         )}
                         className={classNames.mentions__mention}
                         onAdd={onAdd}
-                        style={defaultMentionStyle}
                     />
                 </MentionsInput>
                 <div className="w-full py-2 flex justify-between items-center">
