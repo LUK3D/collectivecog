@@ -92,6 +92,26 @@ export class CoogExtension {
     }
 }
 
+interface ICoogCoreActionArgs {
+    id: string,
+    name: string,
+    type: number,
+    prev?: CoogCoreAction,
+    next: CoogCoreAction[],
+    start_date: Date,
+    end_date: Date,
+    action: Function,
+    data: any[],
+    args: any,
+    on_done?: Function,
+    on_start?: (step: CoogCoreAction) => void,
+    is_running: boolean,
+}
+
+type IOptional<T> = {
+    [P in keyof T]?: T[P];
+}
+
 /**
  * ## CoogCoreAction
  * Represents a single action to be executed in a COOG workflow.
@@ -125,19 +145,53 @@ export class CoogCoreAction {
     on_start?: (step: CoogCoreAction) => void;
     is_running: boolean;
 
+    constructor({
+        id,
+        name,
+        type,
+        prev,
+        next,
+        start_date,
+        end_date,
+        action,
+        data,
+        args,
+        on_done,
+        on_start,
+        is_running
+    }: ICoogCoreActionArgs) {
+
+    }
+
     /**
      * Creates a copy of the current action.
      * 
      * @returns {CoogCoreAction} A new instance with the same properties as the original.
      */
-    copy(): CoogCoreAction {
-        return new CoogCoreAction();
+    copyWith(agrs: IOptional<ICoogCoreActionArgs>): CoogCoreAction {
+        return new CoogCoreAction(
+            {
+                id: crypto.randomUUID(),
+                name: agrs.name ?? this.name,
+                type: agrs.type ?? this.type,
+                prev: agrs.prev ?? this.prev,
+                next: agrs.next ?? this.next,
+                start_date: agrs.start_date ?? this.start_date,
+                end_date: agrs.end_date ?? this.end_date,
+                action: agrs.action ?? this.action,
+                data: agrs.data ?? this.data,
+                args: agrs.args ?? this.args,
+                on_done: agrs.on_done ?? this.on_done,
+                on_start: agrs.on_start ?? this.on_start,
+                is_running: agrs.is_running ?? this.is_running,
+            }
+        );
     }
 
     /**
      * Executes the action.
      */
-    run() {
-        // Implementation goes here
+    async run() {
+        return await this.action();
     }
 }
