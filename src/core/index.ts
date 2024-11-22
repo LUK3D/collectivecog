@@ -160,7 +160,19 @@ export class CoogCoreAction {
         on_start,
         is_running
     }: ICoogCoreActionArgs) {
-
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.prev = prev;
+        this.next = next;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.action = action;
+        this.data = data;
+        this.args = args;
+        this.on_done = on_done;
+        this.on_start = on_start;
+        this.is_running = is_running;
     }
 
     /**
