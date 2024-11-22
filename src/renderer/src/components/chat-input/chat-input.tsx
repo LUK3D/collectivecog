@@ -38,6 +38,7 @@ export function ChatInput(
                         renderSuggestion={(_, __, highlightedDisplay) => (
                             <div className="user">{highlightedDisplay}</div>
                         )}
+                        className="rounded-lg bg-purple-500"
                         onAdd={onAdd}
                         style={defaultMentionStyle}
                     />

@@ -53,5 +53,5 @@ export const defaultInputStyle: MentionsInputStyle = {
 };
 
 export const defaultMentionStyle = {
-    backgroundColor: '#cee4e5',
+    fontWeight: "bold"
 }
