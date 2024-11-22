@@ -11,6 +11,8 @@ import { defaultInputStyle, defaultMentionStyle } from "./styles";
 import { Button } from "../ui/button";
 import { Image, Play, Plus } from "lucide-react";
 
+import classNames from "./styles.module.css";
+
 export function ChatInput(
     { value, data, onChange, onAdd }: {
         value: string | undefined;
@@ -24,6 +26,7 @@ export function ChatInput(
             <div className="w-full flex flex-col border-2 px-4 pt-2 rounded-[10px] bg-slate-50 shadow-lg text-lg">
                 <MentionsInput
                     className="w-full"
+                    classNames={classNames}
                     value={value}
                     onChange={onChange}
                     style={defaultInputStyle}
@@ -38,7 +41,7 @@ export function ChatInput(
                         renderSuggestion={(_, __, highlightedDisplay) => (
                             <div className="user">{highlightedDisplay}</div>
                         )}
-                        className="rounded-lg bg-purple-500"
+                        className={classNames.mentions__mention}
                         onAdd={onAdd}
                         style={defaultMentionStyle}
                     />

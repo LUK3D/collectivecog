@@ -17,7 +17,7 @@ export const defaultInputStyle: MentionsInputStyle = {
         },
         input: {
             background: "transparent",
-            outline: 'none'
+            outline: 'none',
         },
     },
 
@@ -26,13 +26,10 @@ export const defaultInputStyle: MentionsInputStyle = {
         width: 180,
 
         highlighter: {
-            padding: 1,
             background: "transparent",
-            border: '2px inset transparent',
         },
         input: {
             background: "transparent",
-            padding: 1,
             border: '2px inset',
         },
     },
@@ -53,5 +50,5 @@ export const defaultInputStyle: MentionsInputStyle = {
 };
 
 export const defaultMentionStyle = {
-    fontWeight: "bold"
+    fontWeight: "bold",
 }
