@@ -16,7 +16,7 @@ export default function Workspace() {
                         <p className="max-w-[600px] opacity-65 mt-4">
                             Coog is a multi-platform opensource AI workspace
                             that can be extended to interact with any kind of
-                            interface by creating custom extentions.
+                            interface by creating custom extensions.
                         </p>
                     </div>
                 </div>
