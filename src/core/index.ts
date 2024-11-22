@@ -1,10 +1,9 @@
 /**
- * ## ICoogExtensionActionType
- * Defines the type of a Node
+ * ## ICoogExtensionActionNodeType
+ * Enum representing the type of an action node in a COOG extension.
  * 
- * `reference` : Indicates that this node is a reference of another action node
- * 
- * `node` : Indicates that this node does not refer to another one.
+ * - `reference`: This node refers to another action node.
+ * - `node`: This node is standalone and does not reference another node.
  */
 export enum ICoogExtensionActionNodeType {
     reference,
@@ -13,23 +12,50 @@ export enum ICoogExtensionActionNodeType {
 
 /**
  * ## ICoogExtensionActionNode
- * An extension step to execute an action
+ * Represents a single step in an extension's action workflow.
+ * 
+ * @property {string} id - Unique identifier for the action node.
+ * @property {string} [name] - Optional name of the action node.
+ * @property {number} [action] - Optional identifier of the action to execute.
+ * @property {ICoogExtensionActionNodeType} type - The type of the action node (reference or standalone).
+ * @property {any[]} args - Arguments required for the action execution.
+ * @property {ICoogExtensionActionNode[]} next - A list of subsequent action nodes in the workflow.
  */
 export interface ICoogExtensionActionNode {
     id: string;
     name?: string;
     action?: number;
-    type: ICoogExtensionActionNodeType,
-    args: any[],
-    next: ICoogExtensionActionNode[],
+    type: ICoogExtensionActionNodeType;
+    args: any[];
+    next: ICoogExtensionActionNode[];
 }
 
+/**
+ * ## ICoogExtensionAuthor
+ * Contains information about the author of a COOG extension.
+ * 
+ * @property {string} name - The author's name.
+ * @property {string} email - The author's email address.
+ * @property {string[]} urls - A list of URLs associated with the author (e.g., portfolio or contact pages).
+ */
 export interface ICoogExtensionAuthor {
-    name: string,
-    email: string,
-    urls: string[]
+    name: string;
+    email: string;
+    urls: string[];
 }
 
+/**
+ * ## CoogExtension
+ * Represents a COOG extension, which is a collection of actions or steps to be executed in a defined order.
+ * 
+ * @property {string} pkg_id - Unique package identifier for the extension.
+ * @property {string} version - The version of the extension.
+ * @property {string} name - The name of the extension.
+ * @property {string} command - The command to execute the extension.
+ * @property {string} description - A brief description of the extension.
+ * @property {ICoogExtensionActionNode[]} actions - A list of action nodes defining the extension's workflow.
+ * @property {ICoogExtensionAuthor} author - Information about the extension's author.
+ */
 export class CoogExtension {
     pkg_id: string;
     version: string;
@@ -39,18 +65,51 @@ export class CoogExtension {
     actions: ICoogExtensionActionNode[];
     author: ICoogExtensionAuthor;
 
+    /**
+     * Creates a CoogExtension instance from a JSON object.
+     * 
+     * @param {Record<string, any>} data - The data to populate the instance.
+     * @returns {CoogExtension} A populated CoogExtension instance.
+     */
     static fromJson(data: Record<string, any>): CoogExtension {
         return new CoogExtension();
     }
 
+    /**
+     * Converts a CoogExtension instance to a JSON object.
+     * 
+     * @returns {Record<string, any>} The JSON representation of the instance.
+     */
     static toJson(): Record<string, any> {
-        return {}
+        return {};
     }
-    run() {
 
+    /**
+     * Executes the COOG extension.
+     */
+    run() {
+        // Implementation goes here
     }
 }
 
+/**
+ * ## CoogCoreAction
+ * Represents a single action to be executed in a COOG workflow.
+ * 
+ * @property {string} id - Unique identifier for the action.
+ * @property {string} name - The name of the action.
+ * @property {number} type - The type of the action (implementation-specific).
+ * @property {CoogCoreAction} [prev] - The previous action in the workflow (optional).
+ * @property {CoogCoreAction[]} next - The subsequent actions in the workflow.
+ * @property {Date} start_date - The start time of the action.
+ * @property {Date} end_date - The end time of the action.
+ * @property {Function} action - The function to execute for this action.
+ * @property {any[]} data - Data associated with this action.
+ * @property {any} args - Arguments for the action.
+ * @property {Function} [on_done] - Callback triggered when the action completes (optional).
+ * @property {(step: CoogCoreAction) => void} [on_start] - Callback triggered when the action starts (optional).
+ * @property {boolean} is_running - Indicates whether the action is currently running.
+ */
 export class CoogCoreAction {
     id: string;
     name: string;
@@ -61,16 +120,24 @@ export class CoogCoreAction {
     end_date: Date;
     action: Function;
     data: any[];
-    agrs: any;
+    args: any;
     on_done?: Function;
-    on_start?: (step: CoogCoreAction) => void
+    on_start?: (step: CoogCoreAction) => void;
     is_running: boolean;
 
+    /**
+     * Creates a copy of the current action.
+     * 
+     * @returns {CoogCoreAction} A new instance with the same properties as the original.
+     */
     copy(): CoogCoreAction {
         return new CoogCoreAction();
     }
 
+    /**
+     * Executes the action.
+     */
     run() {
-
+        // Implementation goes here
     }
 }
