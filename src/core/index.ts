@@ -64,6 +64,36 @@ export class CoogExtension {
     description: string;
     actions: ICoogExtensionActionNode[];
     author: ICoogExtensionAuthor;
+    start_node_id: string;
+
+    constructor({
+        pkg_id,
+        version,
+        name,
+        command,
+        description,
+        actions,
+        author,
+        start_node_id,
+    }: {
+        pkg_id: string,
+        version: string,
+        name: string,
+        command: string,
+        description: string,
+        actions: ICoogExtensionActionNode[],
+        author: ICoogExtensionAuthor,
+        start_node_id: string,
+    }) {
+        this.pkg_id = pkg_id;
+        this.version = version;
+        this.name = name;
+        this.command = command;
+        this.description = description;
+        this.actions = actions;
+        this.author = author;
+        this.start_node_id = start_node_id;
+    }
 
     /**
      * Creates a CoogExtension instance from a JSON object.
@@ -72,7 +102,16 @@ export class CoogExtension {
      * @returns {CoogExtension} A populated CoogExtension instance.
      */
     static fromJson(data: Record<string, any>): CoogExtension {
-        return new CoogExtension();
+        return new CoogExtension({
+            pkg_id: data['pkg_id'],
+            version: data['version'],
+            name: data['name'],
+            command: data['command'],
+            description: data['description'],
+            actions: data['actions'],
+            author: data['author'],
+            start_node_id: data['start_node_id'],
+        });
     }
 
     /**
@@ -80,8 +119,30 @@ export class CoogExtension {
      * 
      * @returns {Record<string, any>} The JSON representation of the instance.
      */
-    static toJson(): Record<string, any> {
-        return {};
+    toJson(): Record<string, any> {
+        return {
+            "pkg_id": this.pkg_id,
+            "version": this.version,
+            "name": this.name,
+            "command": this.command,
+            "description": this.description,
+            "actions": this.actions,
+            "author": this.author,
+            "start_node_id": this.start_node_id,
+        };
+    }
+
+    toString(): Record<string, any> {
+        return {
+            "pkg_id": this.pkg_id,
+            "version": this.version,
+            "name": this.name,
+            "command": this.command,
+            "description": this.description,
+            "actions": JSON.stringify(this.actions),
+            "author": JSON.stringify(this.author),
+            "start_node_id": this.start_node_id,
+        };
     }
 
     /**
