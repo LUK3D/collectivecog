@@ -114,6 +114,10 @@ export class CoogExtension {
         });
     }
 
+    static fromString(data: string) {
+        return this.fromJson(JSON.parse(data));
+    }
+
     /**
      * Converts a CoogExtension instance to a JSON object.
      * 
