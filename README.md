@@ -1,6 +1,6 @@
 # Collective Cognition (COOG)
 
-![alt text](screenshots/sh-01.png)
+![alt text](screenshots/sh-02.png)
 
 Welcome to the CooG project!
 
