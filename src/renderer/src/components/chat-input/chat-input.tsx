@@ -14,11 +14,12 @@ import { Image, Play, Plus } from "lucide-react";
 import classNames from "./styles.module.css";
 
 export function ChatInput(
-    { value, data, onChange, onAdd }: {
+    { value, data, onChange, onAdd, onRun }: {
         value: string | undefined;
         data: SuggestionDataItem[];
         onChange?: OnChangeHandlerFunc;
         onAdd?: OnAddHandlerFunc;
+        onRun?: () => void;
     },
 ) {
     return (
@@ -66,7 +67,11 @@ export function ChatInput(
                             Use Image
                         </Button>
                     </div>
-                    <Button className="px-2 py-2 h-auto rounded-lg" size={"sm"}>
+                    <Button
+                        onClick={onRun}
+                        className="px-2 py-2 h-auto rounded-lg"
+                        size={"sm"}
+                    >
                         <Play />
                     </Button>
                 </div>

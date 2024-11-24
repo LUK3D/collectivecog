@@ -2,11 +2,10 @@ import { ChatInput } from "@renderer/components/chat-input/chat-input";
 import Layout from "./layout";
 import { useState } from "react";
 
-import {
-    SuggestionDataItem,
-} from "react-mentions";
+import { SuggestionDataItem } from "react-mentions";
+import { exampleExtension } from "@renderer/core";
 
-const commands:SuggestionDataItem[] = [
+const commands: SuggestionDataItem[] = [
     {
         id: "import",
         display: "import",
@@ -14,11 +13,15 @@ const commands:SuggestionDataItem[] = [
     {
         id: "execute",
         display: "execute",
-    }
+    },
 ];
 
 export default function Workspace() {
     const [val, setVal] = useState("");
+
+    const runCode = () => {
+        exampleExtension.run();
+    };
 
     return (
         <Layout>
@@ -42,6 +45,9 @@ export default function Workspace() {
                             setVal(v.target.value);
                         }}
                         data={commands}
+                        onRun={() => {
+                            runCode();
+                        }}
                     >
                     </ChatInput>
                 </div>
