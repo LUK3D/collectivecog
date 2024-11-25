@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { addEdge, applyNodeChanges, applyEdgeChanges, Connection } from '@xyflow/react';
+import { addEdge, applyNodeChanges, applyEdgeChanges } from '@xyflow/react';
 
 import {
     type Edge,

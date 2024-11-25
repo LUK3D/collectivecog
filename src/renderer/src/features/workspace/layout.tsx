@@ -1,5 +1,4 @@
 import DraggableArea from "@renderer/components/DraggableArea";
-import { Button } from "@renderer/components/ui/button";
 import { cn } from "@renderer/lib/utils";
 import { Sparkles, Workflow } from "lucide-react";
 import { NavLink, Outlet } from "react-router";

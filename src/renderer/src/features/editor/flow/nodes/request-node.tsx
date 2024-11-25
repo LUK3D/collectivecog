@@ -9,7 +9,7 @@ import {
     SelectValue,
 } from "@renderer/components/ui/select";
 import { Handle, NodeProps, Position, useReactFlow } from "@xyflow/react";
-import { Globe, Repeat2 } from "lucide-react";
+import { Globe } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
 export function RequestNode({ id, data }: NodeProps) {

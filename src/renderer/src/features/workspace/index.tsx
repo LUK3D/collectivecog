@@ -1,5 +1,4 @@
 import { ChatInput } from "@renderer/components/chat-input/chat-input";
-import Layout from "./layout";
 import { useState } from "react";
 
 import { SuggestionDataItem } from "react-mentions";
